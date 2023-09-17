@@ -93,4 +93,5 @@ do
         sleep 1
 done
 echo "You can't sign in with your existing account. Please check your configuration and other network settings and close script"
+/etc/init.d/shadowsocksr restart
 fi
