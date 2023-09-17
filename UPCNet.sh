@@ -31,6 +31,8 @@ echo $DATE network offline and try to restart... ... >>my_watchdog.log
 # /etc/init.d/network restart
 # 重启网卡需要吗？
 # sleep 3
+# close ssrp
+/etc/init.d/shadowsocksr stop
 parameter='userId='${username}'&password='${password}'&service='${service}'&queryString='
 location='http://121.251.251.207/eportal/InterFace.do?method=login'
 url=`curl -Ls -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36" -o /dev/null -w %{url_effective} http://121.251.251.217`
@@ -59,6 +61,7 @@ do
                         echo -e "\n"
                         echo "Log in with your primary account, the network is back to normal, enjoy~"
                         echo "---close script---"
+                        /etc/init.d/shadowsocksr start
                         exit 0
                 fi
         done
@@ -82,6 +85,7 @@ do
                         echo -e "\n"
                         echo "Log in with your alternate account, the network is back to normal, enjoy~"
                         echo "---close script---"
+                        /etc/init.d/shadowsocksr start
                         exit 0
                 fi
         done
